@@ -4,13 +4,11 @@ public class ArraySequence implements IntegerSequence{
     private int currentIndex;
     private int []data;
 
-    /*Construct the sequence by copying values from the other array into the data array*/
     public ArraySequence(int [] other){
         data = other;
         currentIndex = 0;
     }
-    //Postcondition: The otherseq will be reset.
-    //This constructor will copy ALL values of the `otherseq` into the data array.
+
     public ArraySequence(IntegerSequence otherseq){
         data = new int[otherseq.length()];
         for(int i=0;i<data.length;i++){
@@ -24,6 +22,9 @@ public class ArraySequence implements IntegerSequence{
     }
 
     public int next(){
+        if(!hasNext()){
+            throw new NoSuchElementException();
+        }
         return data[currentIndex++];
     }
 
